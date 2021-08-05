@@ -7,6 +7,8 @@ class CreateStrains < ActiveRecord::Migration[6.1]
       t.integer :cbd
       t.string :rating
       t.string :notes
+      t.belongs_to :user
+      t.belongs_to :grower
 
       t.timestamps
     end
