@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+get '/auth/google_oauth2/callback'
+  
   resources :strains
   resources :growers
   resources :users
