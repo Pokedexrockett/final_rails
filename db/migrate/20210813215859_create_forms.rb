@@ -3,7 +3,7 @@ class CreateForms < ActiveRecord::Migration[6.1]
     create_table :forms do |t|
       t.string :form
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

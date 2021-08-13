@@ -10,8 +10,7 @@ class CreateStrains < ActiveRecord::Migration[6.1]
       t.belongs_to :user
       t.belongs_to :grower
 
-      t.datetime "created_at",  null: false
-      t.datetime "updated_at",  null: false    
+      t.timestamps null: false
     end
   end
 end
