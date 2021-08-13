@@ -5,5 +5,6 @@ class CreateGrowerStrains < ActiveRecord::Migration[6.1]
       t.integer :strain_id
 
       t.timestamps null: false
+    end
   end
 end
