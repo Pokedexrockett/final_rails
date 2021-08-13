@@ -10,42 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_235639) do
-
-  create_table "grower_strains", force: :cascade do |t|
-    t.integer "grower_id"
-    t.integer "strain_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "growers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "strains", force: :cascade do |t|
-    t.string "name"
-    t.string "category"
-    t.integer "thc"
-    t.integer "cbd"
-    t.string "rating"
-    t.string "notes"
-    t.integer "user_id"
-    t.integer "grower_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["grower_id"], name: "index_strains_on_grower_id"
-    t.index ["user_id"], name: "index_strains_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "user_name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
