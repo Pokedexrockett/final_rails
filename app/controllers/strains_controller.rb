@@ -5,7 +5,7 @@ class StrainsController < ApplicationController
     def index
         if @grower = Grower.find_by_id(params[:grower_id])
             @strains = @grower.strains
-          else
+        else
             @strains = Strain.all
         end
     end
@@ -16,8 +16,11 @@ class StrainsController < ApplicationController
     end
 
     def new
-        @strain = Strain.new
-
+        if @grower = Grower.find_by_id(params[:grower_id])
+            @strain = @grower.Strains.build
+        else
+            @strain = Strain.new
+        end
     end
 
     def create
