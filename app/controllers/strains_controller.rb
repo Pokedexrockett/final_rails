@@ -1,7 +1,13 @@
 class StrainsController < ApplicationController
+    before_action :redirect_if_not_logged_in 
+
     
     def index
-        @strains = Strain.all
+        if @grower = Grower.find_by_id(params[:grower_id])
+            @strains = @grower.strains
+          else
+            @strains = Strain.all
+        end
     end
 
     def show
