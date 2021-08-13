@@ -1,24 +1,37 @@
 class GrowersController < ApplicationController
 
     def index
-        growers = Grower.all
+        @growers = Grower.all
     end
 
     def show
-        growers = Grower.find_by_id(params[:id])
+        @grower = Grower.find_by_id(params[:id])
     end
 
     def new
-        growers = Grower.new
+        @grower = Grower.new
     end
 
     def create
-        growers = Grower.new
-        redirect_to grower
+        @grower = Grower.create(grower_params)
+        if @grower
+            redirect_to grower_path(@grower)
+        else
+            render :new
+        end
+    end
+
+    def edit
+        @grower = Grower.find(params[:id])
     end
 
     def update
-
+        @grower.update(grower_params)
+        if @grower.save
+            redirect_to grower_path(@grower)
+        else
+            render :edit
+        end
     end
 
     def destroy
@@ -26,7 +39,7 @@ class GrowersController < ApplicationController
     end
 
     def grower_params
-        params.require(:attraction).permit(:name)
+        params.require(:grower).permit(:name)
       end
 
 

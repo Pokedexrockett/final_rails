@@ -1,1 +1,8 @@
 <h1>Index Page</h1>
+<ul>
+<% @strains.each do |strain| %>
+    <li>
+        <%= link_to strain.strain_name, strain_path(strain) %>
+    </li> 
+<% end %>
+</ul>

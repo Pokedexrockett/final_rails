@@ -1,1 +1,28 @@
 <h1>New Page</h1>
+<%= form_for @strain do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+<br />
+
+    <%= f.label :category %>
+    <%= f.text_area :category %>
+<br />
+
+    <%= f.label :thc %>
+    <%= f.text_area :thc %>
+<br />
+
+    <%= f.label :cbd %>
+    <%= f.text_area :cbd %>
+<br />
+
+    <%= f.label :rating %>
+    <%= f.text_area :rating %>
+<br />
+
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+<br />
+
+    <%= f.submit %>
+<% end %>

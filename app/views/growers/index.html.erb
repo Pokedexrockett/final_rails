@@ -1,1 +1,7 @@
-<h1>Index Page</h1>
+<h1>Index Page</h1><ul>
+<% @growers.each do |grower| %>
+    <li>
+        <%= link_to grower.grower_name, grower_path(grower) %>
+    </li> 
+<% end %>
+</ul>

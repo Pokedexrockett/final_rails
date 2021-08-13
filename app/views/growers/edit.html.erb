@@ -1,1 +1,7 @@
-<h1>Edit Page</h1>
+<h1>Editing <%= @grower.name %></h1>
+<%= form_for grower do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit %>
+<% end %>
