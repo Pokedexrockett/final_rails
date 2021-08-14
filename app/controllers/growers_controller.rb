@@ -13,7 +13,11 @@ class GrowersController < ApplicationController
     end
 
     def new
-        @grower = Grower.new
+        if @grower = Grower.find_by_id(params[:grower_id])
+            @strain = @grower.strains.build
+        else
+            @strain = strain.new
+        end
     end
 
     def create

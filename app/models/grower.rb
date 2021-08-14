@@ -3,4 +3,7 @@ class Grower < ApplicationRecord
   belongs_to :form
   has_many :strains
   has_many :users, through: :forms
+
+  validates :name, presence: true
+
 end
