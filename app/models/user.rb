@@ -1,8 +1,10 @@
 class User < ApplicationRecord
    
-    has_many :strains
-    has many :strain_forms, through: strains, source: :forms
-    has_many :growers
+    has_many :strains, through: :reviews
+    ##has_many :growers
+    has_many :reviews
+    ##has_many :growers, through: :strains
+
 
     validates :username, :email, presence: true
     validates :email, uniqueness: true

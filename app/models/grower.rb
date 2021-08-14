@@ -1,8 +1,7 @@
 class Grower < ApplicationRecord
-  belongs_to :user
-  belongs_to :form
+  ##belongs_to :user
   has_many :strains
-  has_many :users, through: :forms
+  has_many :users, through: :strains
 
   validates :name, presence: true
 

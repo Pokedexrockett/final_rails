@@ -4,11 +4,8 @@ class CreateStrains < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :category
       t.integer :thc
-      t.integer :cbd
-      t.integer :rating
-      t.string :form
+      t.integer :cbd    
       t.integer :grower_id
-      t.integer :user_id
 
       t.timestamps null: false
     end
