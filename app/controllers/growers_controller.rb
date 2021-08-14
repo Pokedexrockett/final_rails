@@ -1,7 +1,11 @@
 class GrowersController < ApplicationController
 
     def index
-        @growers = Grower.all
+        if @grower = Grower.find_by_id(params[:grower_id])
+            @strains = @grower.strains
+        else
+            @strains = strain.all
+        end
     end
 
     def show

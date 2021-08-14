@@ -24,8 +24,8 @@ class StrainsController < ApplicationController
     end
 
     def create
-        @strain = Strain.create(strain_params)
-        if @strain
+        @strain = current_user.strains.create(strain_params)
+        if @strain.save
             redirect_to strain_path(@strain)
         else
             render :new
