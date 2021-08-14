@@ -12,7 +12,6 @@ class StrainsController < ApplicationController
 
     def show
         @strain = Strain.find_by_id(params[:id])
- 
     end
 
     def new
@@ -46,10 +45,11 @@ class StrainsController < ApplicationController
     end
 
     def destroy
-
+        Strain.find(params[:id]).destroy
+        redirect_to strain_url
     end
 
     def strain_params
-        params.require(:strain).permit(:name, :category, :thc, :cbd, :rating, :notes)
+        params.require(:strain).permit(:name, :category, :thc, :cbd, :form, :rating )
       end
 end

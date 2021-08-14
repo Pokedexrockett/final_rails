@@ -6,7 +6,7 @@ class CreateStrains < ActiveRecord::Migration[6.1]
       t.integer :thc
       t.integer :cbd
       t.integer :rating
-      t.string :notes
+      t.string :form
       t.integer :grower_id
       t.integer :user_id
 
