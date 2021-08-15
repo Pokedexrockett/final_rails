@@ -3,7 +3,7 @@ class Strain < ApplicationRecord
     has_many :reviews
     has_many :users, through: :reviews
 
-    validates :name, :category, :thc, :cbd, :rating, :notes, presence: true
+    validates :name, :category, :thc, :cbd, presence: true
 
 
 end

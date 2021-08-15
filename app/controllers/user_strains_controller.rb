@@ -1,0 +1,3 @@
+class UserStrains < ApplicationController
+
+end

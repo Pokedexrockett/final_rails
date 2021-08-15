@@ -6,15 +6,14 @@ get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   end
   resources :growers
   resources :users
-  resources :notes
+  resources :reviews
 
   get '/' => 'sessions#home' 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new' 
   post '/signup' => 'users#create' 
-  delete '/logout' => 'sessions#destroy'
-  get '/most_popular' => 'restaurants#most_popular' 
+  delete '/logout' => 'sessions#destroy' 
 
   get '/auth/:provider/callback' => 'sessions#create'
  

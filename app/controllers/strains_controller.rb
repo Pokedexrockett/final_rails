@@ -49,7 +49,9 @@ class StrainsController < ApplicationController
         redirect_to strain_url
     end
 
+    private
+
     def strain_params
-        params.require(:strain).permit(:name, :category, :thc, :cbd, :form, :rating )
+        params.require(:strain).permit(:name, :category, :thc, :cbd)
       end
 end
