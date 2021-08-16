@@ -1,7 +1,7 @@
-<h1>Index Page</h1><ul>
-<% @growers.each do |grower| %>
-    <li>
-        <%= link_to grower.grower_name, grower_path(grower) %>
-    </li> 
-<% end %>
-</ul>
+<h1>All the Growers</h1>
+
+<ol>
+  <% @growers.each do |grower| %>
+    <li><%= grower.name%></li>
+  <% end %>
+</ol>

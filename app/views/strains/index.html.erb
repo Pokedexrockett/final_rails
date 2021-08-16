@@ -1,8 +1,11 @@
-<h1>Index Page</h1>
-<ul>
-<% @strains.each do |strain| %>
-    <li>
-        <%= link_to strain.strain_name, strain_path(strain) %>
-    </li> 
+<h1>All the Strains</h1>
+<%= form_tag('/strains',:method=>:get) do %>                          
+<%= select_tag "grower_id", options_from_collection_for_select(Grower.all, "id", "name", params[:grower_id]), include_blank: 'Select One' %>    
+<%= submit_tag %>
 <% end %>
-</ul>
+<% @strains.each do |r| %>
+
+  <h2><%= link_to r.name, strain_path(r.id)%> - <%= r.grower.name %></h2>
+  <%= link_to "Write a review", new_strain_review_path(r.id) %> 
+  <p><%= r.category %></p>
+  <% end %>

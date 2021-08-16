@@ -5,5 +5,27 @@ class Strain < ApplicationRecord
 
     validates :name, :category, :thc, :cbd, presence: true
 
+    scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(pot_leaves) desc')}
+    scope :most_popular, -> {left_joins(:reviews).group(:id).order('count(reviews.id) desc').limit(3)}  
+
+    def self.alpha
+        order(:name) 
+    end
+
+    def grower_attributes=(attributes)
+        self.grower = Grower.find_or_create_by(attributes) if !attributes['name'].empty?
+        self.grower 
+    end
+
+ 
+
+    def grower_name
+        grower.try(:name)
+      end
+    
+      def name_and_grower
+        "#{name} - #{grower.try(:name)}"
+      end
+
 
 end

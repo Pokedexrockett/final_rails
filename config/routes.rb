@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   
-  resources :strains do
-    resources :reviews, only: [:new, :index]
-  end
+
   resources :growers
-  resources :users
-  resources :reviews
+
 
   get '/' => 'sessions#home' 
   get '/login' => 'sessions#new'
@@ -16,6 +12,14 @@ get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   delete '/logout' => 'sessions#destroy' 
 
   get '/auth/:provider/callback' => 'sessions#create'
+
+  resources :reviews
+  resources :strains do
+    resources :reviews, only: [:new, :index]
+  end
+  
+  resources :users
+
  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

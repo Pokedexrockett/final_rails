@@ -5,4 +5,7 @@ class Grower < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :alpha, -> {order(:name)} 
+
+
 end

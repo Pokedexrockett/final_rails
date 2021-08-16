@@ -1,0 +1,36 @@
+<%= render partial: 'layouts/errors', locals: {object: @strain}  %>
+<%= form_for(@strain) do |f|%> 
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div>
+      <%= f.label :category %> 
+      <%= f.select :category,options_for_select(["Indica", "Sativa", "Hybrid"]), include_blank: true %>   
+    </div>
+    <div>
+      <%= f.label :thc %>
+      <%= f.text_field :thc %> 
+    </div>
+    <div>
+    <%= f.label :cbd %>
+    <%= f.text_field :cbd %> 
+    </div>
+
+    <p> Select a Grower that already exists: </p>
+    <div>
+      <%= f.collection_select :grower_id, Grower.all, :id, :name, include_blank: 'Select One'%>
+  
+    </div>
+  
+    <p> Or create a new Grower: </p>
+    <div>
+      <%= f.fields_for :grower do |g| %>
+        <%= g.label :name %>
+        <%= g.text_field :name %>
+      <% end %> 
+    </div> 
+    <br>
+    <%= f.submit %>
+  <% end %>

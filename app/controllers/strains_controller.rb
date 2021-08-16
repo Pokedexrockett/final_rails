@@ -1,57 +1,74 @@
 class StrainsController < ApplicationController
-    before_action :redirect_if_not_logged_in 
+    before_action :redirect_if_not_logged_in
+    before_action :set_strain, only: [:show, :edit, :update] 
 
-    
-    def index
-        if @grower = Grower.find_by_id(params[:grower_id])
-            @strains = @grower.strains
-        else
-            @strains = Strain.all
-        end
-    end
-
-    def show
-        @strain = Strain.find_by_id(params[:id])
-    end
-
-    def new
-        if @grower = Grower.find_by_id(params[:grower_id])
-            @strain = @grower.Strains.build
-        else
-            @strain = Strain.new
-        end
-    end
+    def new 
+        @strain = Strain.new  
+        @strain.build_grower 
+    end 
 
     def create
-        @strain = current_user.strains.create(strain_params)
-        if @strain.save
-            redirect_to strain_path(@strain)
-        else
-            render :new
-        end
-    end
+        @strain = Strain.new(strain_params) 
+        @strain.user_ids = session[:user_id] 
+   
+       if @strain.save 
+         redirect_to strain_path(@strain) 
+       else
+        @strain.build_grower  
+         render :new 
+       end
+     end
 
-    def edit
-        @strain = Strain.find(params[:id])
-    end
+    def index   
+      if params[:grower_id]
+        grower = Grower.find(params[:grower_id])
+        @strains = Grower.strains 
+      
+      else 
+        @strains = Strain.order_by_rating.includes(:grower) 
+      end 
+    end 
 
-    def update
-        @strain.update(strain_params)
-        if @strain.save
-            redirect_to strain_path(@strain)
-        else
-            render :edit
-        end
-    end
+    def show 
+    end 
 
-    def destroy
-        Strain.find(params[:id]).destroy
-        redirect_to strain_url
-    end
+    def edit 
+      if authorized_to_edit?(@strain) 
+       render :edit   
+      else 
+       redirect_to strain_path(@strain)   
+      end
+     end 
 
-    private
+    def update   
+      if @strain.update(strain_params)
+        redirect_to strain_path(@strain)
+      else
+        render :edit
+      end 
+    end 
+
+    def most_popular 
+      @strains = Strain.most_popular 
+    end 
+
+    private 
 
     def strain_params
-        params.require(:strain).permit(:name, :category, :thc, :cbd)
+        params.require(:strain).permit(:name, :category, :thc, :cbd, :grower_id, grower_attributes: [:name])
       end
+
+    def set_strain
+        @strain = Strain.find_by(id: params[:id])
+        redirect_to strains_path if !@strain 
+     end
+
+     def redirect_if_not_authorized 
+      if @strain.update(name: params[:name], category: params[:category], thc: params[:thc], cbd: params[:cbd])   
+        redirect_to strain_path(@strain)
+      else
+        redirect_to user_path(current_user)     
+      end 
+    end
+
 end

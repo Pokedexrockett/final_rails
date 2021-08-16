@@ -1,1 +1,35 @@
 <h1>New Review Page </h1>
+
+<%=  display_header(@review)%> 
+<%= render partial: 'layouts/errors', locals: {object: @review}  %>
+
+
+<%= form_for(@review) do |f|%>
+  <% if params[:strain_id] %>
+    <%= f.hidden_field :strain_id %>
+  <% else %>
+    <div>
+      <%= f.label :strain_id, "Select a Strain" %>
+      <%= f.collection_select :strain_id, Strain.alpha, :id, :name, include_blank: true %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :pot_leaves %>
+    <%= f.number_field :pot_leaves, min:0, max:5 %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :form %>
+    <%= f.text_field :form %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :note %>
+    <%= f.text_area :note, size: "25x10" %>
+  </div>
+  <br>
+
+
+
+  <%= f.submit %>
+<% end %>
