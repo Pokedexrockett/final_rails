@@ -1,9 +1,9 @@
-<h1>Cannabiss Journal</h1>
-<h2>Welcome to <%= @user.user_name%>'s homepage! </h2>
+<h1>Your Cannabiss Journal</h1>
+<h2>Welcome to <%= @user.user_name.capitalize%>'s homepage! </h2>
 
-<h3>Here are the Strains reviewed by <%=@user.user_name%>:</h3>
+<h3>Here are the Strains reviewed by <%=@user.user_name.capitalize%>:</h3>
 <ul>
-  <% @user.review_ids.each do |r|%>
-  <li> <%= link_to r.name_and_category, strain_path(r)%> </li>
+  <% @user.user_strains.each do |r|%>
+  <li> <%= link_to r.name_and_grower, strain_path(r)%> </li>
   <% end %>
 </ul>

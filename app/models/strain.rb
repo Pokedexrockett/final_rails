@@ -1,4 +1,5 @@
 class Strain < ApplicationRecord
+    belongs_to :user
     belongs_to :grower
     has_many :reviews
     has_many :users, through: :reviews
@@ -6,7 +7,6 @@ class Strain < ApplicationRecord
     validates :name, :category, :thc, :cbd, presence: true
 
     scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(pot_leaves) desc')}
-    scope :most_popular, -> {left_joins(:reviews).group(:id).order('count(reviews.id) desc').limit(3)}  
 
     def self.alpha
         order(:name) 

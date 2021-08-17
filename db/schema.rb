@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_08_14_184910) do
     t.string "category"
     t.integer "thc"
     t.integer "cbd"
+    t.integer "user_id"
     t.integer "grower_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

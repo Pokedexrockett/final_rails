@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
-    skip_before_action :redirect_if_not_logged_in
+  skip_before_action :redirect_if_not_logged_in
   
-     def home 
-     end 
+    def home 
+    end 
   
   
-      def new  
-      end 
+    def new  
+    end 
   
-      def create
+    def create
     
         if params[:provider] == 'github'
           @user = User.create_by_github_omniauth(auth)
@@ -27,10 +27,10 @@ class SessionsController < ApplicationController
             redirect_to login_path
           end
         end
-      end
+    end
   
   
-      def omniauth
+    def omniauth
         @user = User.create_by_github_omniauth(auth)
     
         session[:user_id] = @user.id
@@ -46,6 +46,6 @@ class SessionsController < ApplicationController
     
         def auth
           request.env['omniauth.auth']
-        end
+    end
      
-      end
+end

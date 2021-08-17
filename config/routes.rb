@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   resources :growers
 
-
   get '/' => 'sessions#home' 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new' 
   post '/signup' => 'users#create' 
   delete '/logout' => 'sessions#destroy' 
+
 
   get '/auth/:provider/callback' => 'sessions#create'
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :index]
   end
   
-  resources :users
+  resources :users, only: [:show]
 
  
 

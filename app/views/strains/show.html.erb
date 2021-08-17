@@ -1,14 +1,16 @@
 <h1><%= @strain.name%>  </h1>
 
+<h2> <%= @strain.grower.name %> </h2>
 
-<h2> <%= @strain.category %> </h2>
+
+<h3> <%= @strain.category %> </h3>
 <div>
   <p><%= @strain.thc %></p>
   <p><%= @strain.cbd %></p>
 </div>
 
 
-<%= link_to "Edit #{@strain.name}", edit_strain_path(@strain) if @strain.users == current_user%>
+<%= link_to "Edit #{@strain.name}", edit_strain_path(@strain) if @strain.user == current_user %>
 
 <br></br>
 

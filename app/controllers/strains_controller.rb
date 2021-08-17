@@ -9,7 +9,7 @@ class StrainsController < ApplicationController
 
     def create
         @strain = Strain.new(strain_params) 
-        @strain.user_ids = session[:user_id] 
+        @strain.user_id = session[:user_id] 
    
        if @strain.save 
          redirect_to strain_path(@strain) 
@@ -22,7 +22,7 @@ class StrainsController < ApplicationController
     def index   
       if params[:grower_id]
         grower = Grower.find(params[:grower_id])
-        @strains = Grower.strains 
+        @strains = grower.strains 
       
       else 
         @strains = Strain.order_by_rating.includes(:grower) 
