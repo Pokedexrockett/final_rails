@@ -3,9 +3,9 @@
 <%= select_tag "grower_id", options_from_collection_for_select(Grower.all, "id", "name", params[:grower_id]), include_blank: 'Select One' %>    
 <%= submit_tag %>
 <% end %>
-<% @strains.each do |r| %>
+<% @strains.each do |s| %>
 
-  <h2><%= link_to r.name, strain_path(r.id)%> - <%= r.grower.name %></h2>
-  <%= link_to "Write a review", new_strain_review_path(r.id) %> 
-  <p><%= r.category %></p>
+  <h2><%= link_to s.name, strain_path(s.id)%> - <%= s.grower.name %></h2>
+  <%= link_to "Write a review", new_strain_review_path(s.id) %> 
+  <p><%= s.category %></p>
   <% end %>

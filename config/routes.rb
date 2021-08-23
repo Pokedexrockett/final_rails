@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy' 
 
 
-  get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/facebook/callback' => 'sessions#create' 
 
   resources :reviews
   resources :strains do

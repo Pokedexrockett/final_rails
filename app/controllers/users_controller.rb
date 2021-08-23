@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :redirect_if_not_logged_in, only: [:new, :create,]
+  skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
 
   def new
   end
@@ -25,5 +25,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:user_name, :email, :password)
+  end
+
+  def user_name
+    @user = User.find_by(id: params[:id]) 
   end
 end

@@ -2,7 +2,9 @@ class SessionsController < ApplicationController
   skip_before_action :redirect_if_not_logged_in
   
     def home 
+
     end 
+
   
   
     def new  
@@ -10,10 +12,15 @@ class SessionsController < ApplicationController
   
     def create
     
-        if params[:provider] == 'github'
-          @user = User.create_by_github_omniauth(auth)
+        if params[:provider] == 'facebook'
+          @user = User.find_or_create_by(uid: auth['uid']) do |u|
+            u.name = auth['info']['name']
+            u.email = auth['info']['email']
+            u.image = auth['info']['image']
+          end
+      
           session[:user_id] = @user.id
-          redirect_to user_path(@user)
+          render 'welcome/home'
         else
     
       
@@ -30,12 +37,12 @@ class SessionsController < ApplicationController
     end
   
   
-    def omniauth
-        @user = User.create_by_github_omniauth(auth)
+    # def omniauth
+    #     @user = User.create_by_github_omniauth(auth)
     
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
-      end
+    #     session[:user_id] = @user.id
+    #     redirect_to user_path(@user)
+    #   end
   
       def destroy 
         session.clear  
