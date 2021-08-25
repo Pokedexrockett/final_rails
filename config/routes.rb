@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :growers
 
+
   get '/' => 'sessions#home' 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

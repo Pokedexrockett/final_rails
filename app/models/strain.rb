@@ -17,15 +17,10 @@ class Strain < ApplicationRecord
         self.grower 
     end
 
- 
-
-    def grower_name
-        grower.try(:name)
-      end
     
-      def name_and_grower
+    def name_and_grower
         "#{name} - #{grower.try(:name)}"
-      end
+    end
 
 
 end
