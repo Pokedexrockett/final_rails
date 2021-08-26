@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new' 
   post '/signup' => 'users#create' 
   delete '/logout' => 'sessions#destroy' 
+  # delete 'strains/:id/delete' => 'strains#destroy', as: 'strains_delete'
+  # get '/strains/:id/delete' => 'strains#destroy'
 
 
-  get '/auth/facebook/callback' => 'sessions#create' 
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth' 
 
   resources :reviews
   resources :strains do
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   end
   
   resources :users, only: [:show]
+  
 
  
 

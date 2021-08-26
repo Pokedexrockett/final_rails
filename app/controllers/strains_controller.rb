@@ -48,9 +48,13 @@ class StrainsController < ApplicationController
       end 
     end 
 
-    def most_popular 
-      @strains = Strain.most_popular 
-    end 
+    # def destroy  
+    #   @strain = Strain.find(params[:id])      
+    #   @strain.destroy
+    #   redirect_to strains_path
+    # end
+
+ 
 
     private 
 

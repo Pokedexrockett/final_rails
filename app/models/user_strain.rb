@@ -1,2 +1,0 @@
-class UserStrain < ApplicationRecord
-end

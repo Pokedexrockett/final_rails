@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_224207) do
-
-  create_table "create_user_strains", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2021_08_14_165131) do
 
   create_table "growers", force: :cascade do |t|
     t.string "name"
@@ -44,19 +39,11 @@ ActiveRecord::Schema.define(version: 2021_08_18_224207) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_strains", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "strain_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "email"
     t.string "password_digest"
-    t.string "name"
-    t.string "image"
+    t.string "provider"
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
