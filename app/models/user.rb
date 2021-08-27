@@ -1,11 +1,12 @@
 class User < ApplicationRecord
 
     has_many :strains
+
     has_many :reviews
-    has_many :reviews, through: :strains
+    has_many :reviewed_strains, through: :reviews, source: :strain
 
     has_many :growers
-    has_many :growers, through: :strains
+    # has_many :growers, through: :strains
 
     has_secure_password
 
