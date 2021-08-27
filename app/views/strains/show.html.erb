@@ -11,6 +11,10 @@
 
 
 <%= link_to "Edit #{@strain.name}", edit_strain_path(@strain) if @strain.user == current_user %>
+<br></br>
+
+<%= link_to "Review This Strain", new_review_path(strain_id: @strain.id) %> 
+
 
 <br></br>
 
