@@ -14,9 +14,9 @@ class SessionsController < ApplicationController
     def create 
     
       user = User.find_by(user_name: params[:user][:user_name])
-      
       if user.try(:authenticate, params[:user][:password])
         session[:user_id] = user.id 
+        # byebug
         redirect_to user_path(user)
       else
         flash[:error] = "Sorry, login info was incorrect. Please try again."
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     end
   
       def destroy 
-        session.clear  
+        session.destroy  
         redirect_to '/'
       end 
     
